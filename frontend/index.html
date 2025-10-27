@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free3D Playground</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="app-header">
+        <h1>Free3D Playground</h1>
+        <p>Create and preview concept meshes from natural language prompts.</p>
+      </header>
+      <main class="app-main">
+        <section class="prompt-panel">
+          <form id="prompt-form">
+            <label class="field">
+              <span>Describe your model</span>
+              <textarea id="prompt-input" rows="5" placeholder="e.g. A stylized sci-fi spaceship"></textarea>
+            </label>
+            <div class="field">
+              <label for="style-select">Style preset</label>
+              <select id="style-select">
+                <option value="realistic">Realistic</option>
+                <option value="stylized" selected>Stylized</option>
+                <option value="lowpoly">Low poly</option>
+              </select>
+            </div>
+            <button type="submit" class="primary">Generate concept mesh</button>
+          </form>
+          <section class="history" aria-live="polite">
+            <h2>Generation history</h2>
+            <ul id="history-list"></ul>
+          </section>
+        </section>
+        <section class="viewer-panel">
+          <div class="viewer-toolbar">
+            <div>
+              <button id="reset-camera" type="button">Reset view</button>
+              <button id="toggle-rotation" type="button">Toggle auto-rotate</button>
+            </div>
+            <div class="status" id="status-indicator">Ready</div>
+          </div>
+          <canvas id="viewer-canvas" width="800" height="600" aria-label="3D model preview"></canvas>
+          <section class="inspector">
+            <h2>Model metadata</h2>
+            <dl>
+              <div>
+                <dt>Name</dt>
+                <dd id="model-name">—</dd>
+              </div>
+              <div>
+                <dt>Vertices</dt>
+                <dd id="model-vertices">0</dd>
+              </div>
+              <div>
+                <dt>Faces</dt>
+                <dd id="model-faces">0</dd>
+              </div>
+            </dl>
+          </section>
+        </section>
+      </main>
+      <footer class="app-footer">
+        <p>
+          This is an experimental sandbox. Hook up your own text-to-3D model pipeline by
+          extending the <code>generationService</code> on the client or by connecting to an API.
+        </p>
+      </footer>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
